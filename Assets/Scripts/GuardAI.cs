@@ -453,7 +453,7 @@ public class AttackingState : FSMState
     {
         if (Time.time >= attackEndTime)
         {
-            if (ai.currentVisibleTarget != null && Vector3.Distance(ai.transform.position, ai.currentVisibleTarget.transform.position) < 0.75f)
+            if (GameController.Instance.playerKilled)//ai.currentVisibleTarget != null && Vector3.Distance(ai.transform.position, ai.currentVisibleTarget.transform.position) < 0.75f)
             {
                 _nextState = new FSMTransition(TransitionType.Reaction, ai.States[State.KilledPlayer]);
             }

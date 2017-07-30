@@ -90,6 +90,7 @@ public class MainPlayer : MonoBehaviour
             return false;
         foreach (GuardAI guard in guards)
         {
+            Debug.Log(Vector3.Distance(guard.transform.position, transform.position));
             if (Vector3.Distance(guard.transform.position, transform.position) <= GameController.Instance.captureDistance)
                 return true;
         }
@@ -121,8 +122,9 @@ public class MainPlayer : MonoBehaviour
     }
 
     public void GameOver() {
-        
-        //death animation
+        if (ghost != null)
+            ghost.Deactivate();
+        character.TriggerDeath();
         StartCoroutine(GameOverCoroutine());
     }
 
