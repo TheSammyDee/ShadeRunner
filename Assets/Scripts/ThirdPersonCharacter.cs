@@ -236,10 +236,15 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
         public void TriggerAttack() {
             m_Animator.SetLayerWeight(1, 1);
+            m_Animator.SetTrigger("Attacking");
         }
 
         public void EndAttack() {
             m_Animator.SetLayerWeight(1, 0);
+        }
+
+        public void TriggerDeath() {
+            m_Animator.SetTrigger("Killed");
         }
     }
 

@@ -64,7 +64,7 @@ public class GameController : MonoBehaviour {
     }
 
     private void SetUpLevel() {
-
+        playerKilled = false;
         SetUpGhostTimes();
     }
 
