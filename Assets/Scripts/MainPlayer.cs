@@ -130,6 +130,7 @@ public class MainPlayer : MonoBehaviour
     IEnumerator GameOverCoroutine() {
         yield return new WaitForSeconds(0.3f);
         GameController.Instance.playerKilled = true;
+        //GameController.Instance.PlayDeathMusic();
         yield return new WaitForSeconds(2);
         GameController.Instance.LoadGameOver();
     }

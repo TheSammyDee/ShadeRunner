@@ -32,6 +32,8 @@ public class GameController : MonoBehaviour {
     [HideInInspector]
     public bool playerKilled = false;
 
+    private MusicManager music;
+
     int levelOffset = 2;
 
     private void Awake() {
@@ -45,6 +47,7 @@ public class GameController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        music = FindObjectOfType<MusicManager>();
         SetUpLevel();
 	}
 	
@@ -102,6 +105,16 @@ public class GameController : MonoBehaviour {
 
     public void LoadGameOver() {
         SceneManager.LoadScene(2);
+        music.PlayGameOverMusic();
+    }
+
+    public void PlayDeathMusic() {
+        music.PlayGameOverMusic();
+    }
+
+    public void LoadMainMenu() {
+        SceneManager.LoadScene(0);
+        music.PlayMenuMusic();
     }
 
 }
