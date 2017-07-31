@@ -80,7 +80,7 @@ public class GameController : MonoBehaviour {
 
     public void NextLevel() {
         level++;
-        if (level + levelOffset == SceneManager.sceneCount)
+        if (level + levelOffset == SceneManager.sceneCountInBuildSettings)
             LoadWin();
         else
             LoadLevel();
