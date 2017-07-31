@@ -78,12 +78,14 @@ public class GuardAI : MonoBehaviour
     public GameObject nextPatrolTarget;
 
     private GameObject lastVisibleTargetObject;
+    public GuardSFX sfx;
 
     public Dictionary<State, FSMState> States;
     // Use this for initialization
     void Start()
     {
         aiCharacterControl = GetComponent<AICharacterControl>();
+        sfx = GetComponent<GuardSFX>();
 
         nextPatrolTarget = new GameObject("InitialGuardPosition");
         if (patrolPath.Count > 0)
@@ -292,6 +294,7 @@ public class ChaseState : FSMState
     protected override void _onEnter(GuardAI ai)
     {
         ai.GetComponent<NavMeshAgent>().speed = ai.sprintSpeed;
+        ai.sfx.PlayAlert();
     }
 
     protected override void _onExit(GuardAI ai)

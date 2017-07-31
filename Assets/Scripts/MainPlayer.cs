@@ -8,12 +8,15 @@ public class MainPlayer : MonoBehaviour
 {
 
     public Ghost ghostPrefab;
+    public AudioClip ghostSound;
+    public AudioClip deathPunchSound;
 
     ThirdPersonCharacter character;
     CamFollow cam;
     bool active;
     GuardAI[] guards;
     Ghost ghost;
+    AudioSource audio;
 
     // Use this for initialization
     void Start()
@@ -21,6 +24,7 @@ public class MainPlayer : MonoBehaviour
         active = true;
 
         character = GetComponent<ThirdPersonCharacter>();
+        audio = GetComponent<AudioSource>();
         cam = FindObjectOfType<CamFollow>();
         cam.target = transform;
         guards = FindObjectsOfType<GuardAI>();
@@ -53,6 +57,9 @@ public class MainPlayer : MonoBehaviour
 
     void EngageGhost()
     {
+        audio.clip = ghostSound;
+        audio.volume = 0.9f;
+        audio.Play();
         Deactivate();
         ghost = (Ghost)Instantiate(ghostPrefab, transform.position + transform.forward * GameController.Instance.ghostStartOffset, transform.rotation);
         ghost.player = this;
@@ -71,6 +78,9 @@ public class MainPlayer : MonoBehaviour
 
     public void Reactivate()
     {
+        audio.clip = ghostSound;
+        audio.volume = 0.5f;
+        audio.Play();
         active = true;
         character.active = true;
         cam.target = transform;
@@ -128,6 +138,10 @@ public class MainPlayer : MonoBehaviour
     }
 
     IEnumerator GameOverCoroutine() {
+        
+        audio.clip = deathPunchSound;
+        audio.volume = 0.8f;
+        audio.Play();
         yield return new WaitForSeconds(0.3f);
         GameController.Instance.playerKilled = true;
         //GameController.Instance.PlayDeathMusic();

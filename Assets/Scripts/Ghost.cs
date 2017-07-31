@@ -8,7 +8,6 @@ public class Ghost : MonoBehaviour {
 
     float lifeTimer = 0f;
     ThirdPersonCharacter character;
-    
 
     [HideInInspector]
     public MainPlayer player;
