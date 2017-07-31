@@ -80,7 +80,10 @@ public class GameController : MonoBehaviour {
 
     public void NextLevel() {
         level++;
-        LoadLevel();
+        if (level + levelOffset == SceneManager.sceneCount)
+            LoadWin();
+        else
+            LoadLevel();
     }
 
     public void DropChargeTime() {
@@ -106,6 +109,11 @@ public class GameController : MonoBehaviour {
     public void LoadGameOver() {
         SceneManager.LoadScene(2);
         music.PlayGameOverMusic();
+    }
+
+    public void LoadWin() {
+        SceneManager.LoadScene(1);
+        music.PlayWinMusic();
     }
 
     public void PlayDeathMusic() {
